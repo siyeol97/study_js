@@ -1,0 +1,82 @@
+/* 부트스트랩 쓰면 동작들 자동으로 스무스하게 변경, 아래코드 추가하면 원상복구*/
+:root {
+    scroll-behavior: auto;
+}
+
+
+.navbar {
+    position: fixed !important;
+    width: 100%;
+    z-index: 5;
+}
+
+.navbar-brand {
+    font-size: 20px;
+    transition: all 0.2s;
+}
+
+.progress {
+    margin-top: 48px;
+    position: fixed;
+}
+
+.list-group {
+    z-index: 5;
+}
+
+.alert-box {
+    background-color: skyblue;
+    padding: 20px;
+    color: white;
+    border-radius: 5px;
+    display: none; 
+}
+
+.show {
+    display: block;
+}
+
+.black-bg {
+    width : 100%;
+    height : 100%;
+    position : fixed;
+    background : rgba(0,0,0,0.5);
+    z-index : 5;
+    padding: 30px;
+    /*display: none;*/
+    visibility: hidden; /* 애니메이션 줄때 display : none 대용*/
+    opacity: 0; 
+    transition: all 0.3s;
+    z-index: 6;
+}
+
+.white-bg {
+    background: white;
+    border-radius: 5px;
+    padding: 30px;
+} 
+
+.show-modal {
+    visibility: visible;
+    opacity: 1;
+}
+
+.main-bg {
+    padding: 100px 20px;
+    background: lightgray;
+}
+
+.slide-container {
+    width: 300vw; /*vw 브라우저 폭 100vw가 화면맞춤 300은 3배*/
+    transition: all 1s;
+}
+
+.slide-box {
+    width: 100vw;
+    float: left;
+}
+
+.slide-box img {
+    width: 100%;
+}
+
