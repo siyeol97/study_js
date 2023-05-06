@@ -63,10 +63,12 @@
         <span id="num">5</span>
         초 이내 구매시 사은품 증정!
     </div>
+
+    <!-- 이미지 캐러셀 -->
     <div style="overflow: hidden">
         <div class="slide-container">
             <div class="slide-box">
-                <img src="car1.png">
+                <img src="car1.png" draggable="false">
             </div>
             <div class="slide-box">
                 <img src="car2.png">
@@ -81,6 +83,64 @@
     <button class="slide-2">2</button>
     <button class="slide-3">3</button>
     <button class="next-btn">다음</button>
+
+    <script>
+        var startp = 0;
+        var downflag = false;
+        $('.slide-box').eq(0).on('mousedown', function(e){ // 모바일은 touchstart
+            startp = e.clientX;
+            downflag = true;
+        });
+        $('.slide-box').eq(0).on('mousemove', function(e){// 모바일은 touchmove
+            console.log(e.clientX - startp);
+            if (downflag == true){
+                $('.slide-container').css('transform', `translateX(${e.clientX - startp}px)`)
+            }
+        });
+        $('.slide-box').on('mouseup', function(e){// 모바일은 touchend
+            downflag = false;
+            if(e.clientX - startp < -300){
+                $('.slide-container').css('transition', 'all 0.5s').css('transform', `translateX(-100vw)`)
+            } else{
+                $('.slide-container').css('transition', 'all 0.5s').css('transform', `translateX(0vw)`)
+            }
+
+            setTimeout(function(){
+                $('.slide-container').css('transition', 'none');
+            },500)
+            
+        });
+
+        //모바일
+        $('.slide-box').eq(0).on('touchstart', function(e){ // 모바일은 touchstart
+            startp = e.touches[0].clientX; // 터치이벤트에서 x좌표 출력
+            downflag = true;
+        });
+        $('.slide-box').eq(0).on('touchmove', function(e){// 모바일은 touchmove
+            console.log(e.touches[0].clientX - startp);
+            if (downflag == true){
+                $('.slide-container').css('transform', `translateX(${e.touches[0].clientX - startp}px)`)
+            }
+        });
+        $('.slide-box').on('touchend', function(e){// 모바일은 touchend
+            downflag = false;
+            if(e.changedTouches[0].clientX - startp < -300){ // touchend 이벤트에서 e.changedtouches[0]
+                $('.slide-container').css('transition', 'all 0.5s').css('transform', `translateX(-100vw)`)
+            } else{
+                $('.slide-container').css('transition', 'all 0.5s').css('transform', `translateX(0vw)`)
+            }
+
+            setTimeout(function(){
+                $('.slide-container').css('transition', 'none');
+            },500)
+            
+        });
+
+
+
+
+
+    </script>
 
     
     <div class="lorem" style="width: 200px; height: 100px; overflow-y: scroll">
@@ -97,7 +157,7 @@
             var fact_height = document.querySelector('html').scrollHeight;
             var percent = present_height / (fact_height - view_height) * 100;
             $('.progress').css('width', `${percent}%`);
-            console.log(present_height, view_height, fact_height);
+            //console.log(present_height, view_height, fact_height);
         })
         /*window.addEventListener('scroll', function(){
            window.scrollTo(0, 100); // 강제로 스크롤 (x, y)

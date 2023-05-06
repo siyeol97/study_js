@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js" integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
+    <title>card</title>
+    <link rel="stylesheet" href="card.css">
+</head>
+<body>
+    
+    <div class="card-background">
+        <div class="card-box">
+            <img src="card1.png">
+        </div>
+        <div class="card-box">
+            <img src="card2.png">
+        </div>
+        <div class="card-box">
+            <img src="card3.png">
+        </div>
+    </div>
+
+
+    <script>
+        //스크롤 할때마다 뭔가 실행
+        $(window).scroll(function(){
+            var height = $(window).scrollTop();
+            //650~1150 까지 스크롤바 내리면, 첫째 카드의 opacity를 1~0으로 서서히 변경해주셈
+            var y1 = (-1/500) * height + (115/50); // opacity값
+            $('.card-box').eq(0).css('opacity', y1);
+            //650~1105까지 스크롤바 내리면, 첫째 카드의 크기를 100%~90%로 서서히 변경해주셈
+            var size1 = (-1/5000) * height + 565/500;
+            $('.card-box').eq(0).css('transform', `scale( ${size1} )`);
+
+            //1270~2000 까지 스크롤바 내리면, 첫째 카드의 opacity를 1~0으로 서서히 변경해주셈
+            var y2 = (-1/730) * height + 200/73;
+            $('.card-box').eq(1).css('opacity', y2);
+            //1270~2000까지 스크롤바 내리면, 첫째 카드의 크기를 100%~90%로 서서히 변경해주셈
+            var size2 = (-1/7300) * height + 857/730;
+            $('.card-box').eq(1).css('transform', `scale( ${size2} )`);
+            
+        })
+    </script>
+
+
+
+
+
+</body>
+</html>

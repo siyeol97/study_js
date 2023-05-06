@@ -36,7 +36,7 @@
 $('.list').click(function(e){
     console.log(e.target.dataset.id);
     open_tab(e.target.dataset.id); //숫자로 변환해서 사용하면 더 정확할듯
-})
+});
 
 // 콜백함수 안에 들어갈거 함수로 
 function open_tab(len){
@@ -46,3 +46,47 @@ function open_tab(len){
     $('.tab-content').eq(len).addClass('show');
 }
 
+var shirts = [95, 100, 105, 110];
+var pants = [28, 30, 32];
+
+$('.form-select').eq(0).on('input', function(){
+    //var value = $('.form-select').eq(0).val();
+    //var value = this.value;
+    //var value = e.currentTarget.value;
+    if(this.value == '셔츠'){
+        $('.form-select').eq(1).html(''); //내용비우기
+        $('.form-select').eq(1).removeClass('form-hide');
+        shirts.forEach((data) => { // arrow function 쓰면 this 뜻이 달라질 수 있음 : 밖에있던 이상한 this를 그대로 가져옴
+                                    // 이벤트리스너안에서 e.currentTarget의 의미로 this를 쓰고싶으면 function(){} 써야함
+            $('.form-select').eq(1).append(`<option>${data}</option>`);
+        })
+    }
+    else if(this.value == '바지'){
+        $('.form-select').eq(1).html(''); //내용비우기
+        $('.form-select').eq(1).removeClass('form-hide');
+        // array에 붙일수 있는 forEach 반복문
+        pants.forEach(function(data, i){ // 콜백함수의 1번 파라미터는 array의 요소, 2번 파라미터 i 는 1씩 증가하는 정수
+            $('.form-select').eq(1).append(`<option>${data}</option>`);
+        });
+    }
+});
+
+// object 반복문 python이랑 비슷
+var obj = {name: 'kim', age: 20};
+for (var key in obj){
+    console.log(key);
+    console.log(obj[key]);
+}
+
+var check = ['흥민', '영희', '철수', '재석'];
+
+function find_name(name){
+    for(var temp in check){ // array는 temp 에 index 들어감
+        console.log(temp);
+        if(check[temp] == name){
+            console.log('있어요');
+            return 0;
+        }
+    }
+}
+find_name('영희');

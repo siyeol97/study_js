@@ -68,7 +68,6 @@
 
 .slide-container {
     width: 300vw; /*vw 브라우저 폭 100vw가 화면맞춤 300은 3배*/
-    transition: all 1s;
 }
 
 .slide-box {
